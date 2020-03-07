@@ -1,6 +1,7 @@
 dashboard/
 img/
 webalizer/
+bc_stats/
 ._index_test.php
 applications.html
 bitnami.css

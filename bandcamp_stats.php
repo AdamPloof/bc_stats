@@ -24,6 +24,7 @@ $q = "INSERT INTO notables_tab (
         link, 
         `date`, 
         `location`,
+        track_count,
         amount,
         currency,
         has_label,
@@ -36,13 +37,14 @@ $q = "INSERT INTO notables_tab (
         :link, 
         :date, 
         :location,
+        :track_count,
         :amount,
         :currency,
         :has_label,
         :label)";
 
 // Insert each line of CSV into the DB
-$csvFile = './bc_stats/bc_notable_2020-02-24.csv';
+$csvFile = './bc_stats/bc_notable_2020-03-07.csv';
 
 if (($f = fopen($csvFile, "r")) !== FALSE) {
     $row = 1;

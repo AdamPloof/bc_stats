@@ -6,16 +6,17 @@ class StatsManager
     public function __construct()
     {
         $this->tbl_def = array(
-            ":title"=>"", 
-            ":artist"=>"", 
-            ":genre"=>"", 
-            ":link"=>"", 
-            ":date"=>"", 
-            ":location"=>"", 
-            ":amount"=>"",
-            ":currency"=>"",
-            ":has_label"=>"",
-            ":label"=>""
+            ":title" => "", 
+            ":artist" => "", 
+            ":genre" => "", 
+            ":link" => "", 
+            ":date" => "", 
+            ":location" => "",
+            ":track_count" => "", 
+            ":amount" => "",
+            ":currency" => "",
+            ":has_label" => "",
+            ":label" => ""
         );
     }
 

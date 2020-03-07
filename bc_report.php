@@ -47,6 +47,7 @@
                     <th scope="col">Artist</th>
                     <th scope="col">Genre</th>
                     <th scope="col">Location</th>
+                    <th scope="col">Track Count</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Currency</th>
                     <th scope="col">Has Label?</th>
@@ -64,6 +65,7 @@ foreach($all_stats as $row) {
     $artist = $row["artist"];
     $genre = $row["genre"];
     $loc = $row["location"];
+    $track_count = $row["track_count"];
     $amount = $row["amount"];
     $currency = $row["currency"];
     $has_label = $row["has_label"];
@@ -77,6 +79,7 @@ foreach($all_stats as $row) {
                 <td>$artist</td>
                 <td>$genre</td>
                 <td>$loc</td>
+                <td>$track_count</td>
                 <td>$amount</td>
                 <td>$currency</td>
                 <td>$has_label</td>
