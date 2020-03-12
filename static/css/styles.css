@@ -9,6 +9,15 @@ body {
     margin-top: 35px;
     overflow: auto;
     box-shadow: 5px 5px 8px #888888;
+    position: relative;
+}
+
+.report-chart {
+    background-color: white;
+    margin-top: 35px;
+    min-height: 450px;
+    box-shadow: 5px 5px 8px #888888;
+    position: relative;
 }
 
 .report thead th {
