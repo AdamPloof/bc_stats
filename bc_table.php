@@ -16,8 +16,11 @@
                 </tr>
             </thead>
         <tbody>
+
     <?php
-    $all_stats = getAllStats();
+
+    $stats = new StatsFetcher;
+    $all_stats = $stats->getAllStats();
 
     foreach($all_stats as $row) {
         $id = $row["id"];
