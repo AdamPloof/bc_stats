@@ -1,3 +1,4 @@
+/* Main styles */
 
 body {
     background-color: rgb(235, 235, 235);
@@ -7,6 +8,7 @@ body {
     background-color: white;
     max-height: 500px;
     margin-top: 35px;
+    margin-bottom: 35px;
     overflow: auto;
     box-shadow: 5px 5px 8px #888888;
     position: relative;
@@ -15,6 +17,7 @@ body {
 .report-chart {
     background-color: white;
     margin-top: 35px;
+    margin-bottom: 35px;
     min-height: 450px;
     box-shadow: 5px 5px 8px #888888;
     position: relative;
@@ -27,4 +30,62 @@ body {
 
 .album-link:hover {
     text-decoration: none;
+}
+
+
+/* Filter Nav bar */
+
+.filter-nav {
+    background-color: #4f575f !important;
+    padding: 10px 4px 10px 4px;
+}
+
+.dd-label {
+    color: rgb(226, 226, 226);
+    padding: 0px 15px 0px 15px;
+}
+
+.date-input {
+    width: 20%;
+}
+
+
+/* Drill down report */
+
+.drill-down {
+    background-color: white;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    box-shadow: 5px 5px 8px #888888;
+    display: flex;
+    flex-direction: row; 
+}
+
+.drill-output {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    justify-content: center;
+}
+
+.drill-col {
+    float: left;
+}
+
+.dates-sidebar {
+    width: 25%;
+}
+
+.genre-col, .album-col {
+    border-top-width: 0;
+    border: 1px solid rgba(0,0,0,.125);
+    padding: 15px;
+}
+
+.genre-col {
+    height: 40%;
+}
+
+.album-col {
+    height: 60%;
 }

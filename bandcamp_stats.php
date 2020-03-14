@@ -44,7 +44,7 @@ $q = "INSERT INTO notables_tab (
         :label)";
 
 // Insert each line of CSV into the DB
-$csvFile = './bc_stats/bc_notable_2020-03-07.csv';
+$csvFile = './bc_stats/bc_notable_2020-03-13.csv';
 
 if (($f = fopen($csvFile, "r")) !== FALSE) {
     $row = 1;

@@ -9,7 +9,10 @@
             <a class="nav-link" href="/bc_notables/bc_report.php">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-            <a id="reports-link" class="nav-link" href="/bc_notables/bc_charts.php">Reports</a>
+            <a id="reports-link" class="nav-link" href="/bc_notables/bc_drill_down.php">Drill Down</a>
+        </li>
+        <li class="nav-item">
+            <a id="reports-link" class="nav-link" href="/bc_notables/bc_charts.php">Charts</a>
         </li>
         <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>

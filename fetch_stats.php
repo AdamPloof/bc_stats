@@ -40,6 +40,7 @@ class StatsFetcher
             WHERE `date` BETWEEN :st_date AND :en_date
             GROUP BY genre";
 
+        // TOOD: make date variable based on user input
         $start_date = '2020-01-01';
         $end_date = '2020-12-31';
 
@@ -48,14 +49,42 @@ class StatsFetcher
         $stmt->bindParam(':en_date', $end_date);
         $stmt->execute();
 
-        $all_stats = array();
+        $genre_count = array();
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            array_push($all_stats, $row);
+            array_push($genre_count, $row);
         }
 
-        return $all_stats;
+        return $genre_count;
     }
+
+
+    public function sumByDate()
+    {
+        // Sum currency by date
+        $q = "SELECT `date`, SUM(amount) AS 'total', COUNT(id) AS 'count'
+        FROM `notables_tab`
+        WHERE `date` BETWEEN :st_date AND :en_date
+        GROUP BY `date`";
+
+        // TOOD: make date variable based on user input
+        $start_date = '2020-01-01';
+        $end_date = '2020-12-31';
+
+        $stmt = $this->conn->prepare($q);
+        $stmt->bindParam(':st_date', $start_date);
+        $stmt->bindParam(':en_date', $end_date);
+        $stmt->execute();
+
+        $date_sum = array();
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            array_push($date_sum, $row);
+        }
+
+        return $date_sum;
+    }
+
 
     public function getJsonData()
     {

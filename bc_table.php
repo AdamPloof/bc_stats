@@ -2,7 +2,6 @@
     <table class="table table-sm table-hover table-bordered">
             <thead class="thead-dark">
                 <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Date</th>
                 <th scope="col">Title</th>
                 <th scope="col">Artist</th>
@@ -23,7 +22,6 @@
     $all_stats = $stats->getAllStats();
 
     foreach($all_stats as $row) {
-        $id = $row["id"];
         $date = $row["date"];
         $title = $row["title"];
         $artist = $row["artist"];
@@ -37,7 +35,6 @@
         $link = $row["link"];
 
         echo "<tr>
-                <th scope='row'>$id</th>
                     <td>$date</td>
                     <td><a class='album-link' href='$link'>$title</a></td>
                     <td>$artist</td>
