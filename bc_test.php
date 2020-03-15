@@ -19,8 +19,6 @@
 
         <div id="report_container" class="container">
             <?php
-                require_once "fetch_stats.php";
-
                 $stats = new StatsFetcher;
                 $genres = $stats->getGenreCount();
 

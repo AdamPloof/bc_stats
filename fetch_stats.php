@@ -9,8 +9,50 @@ class StatsFetcher
 {
     public function __construct()
     {
+        require_once "bc_queries.php";
         $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME;
         $this->conn = new PDO($dsn, DB_USER, DB_PASSWORD) or die("Could not connect to DB!");
+
+        $this->qs = $query_set;
+    }
+
+    public function fetchStats($idx)
+    {
+        // Execute provided query -- $q can either be a selection from
+        // $report->query_set or a raw query
+        if (empty($idx)) {
+            die("A valid index of the query set must be provided");
+        } else {
+            $q = $this->qs[$idx];
+        }
+
+        if (isset($_REQUEST['start_date'])) {
+            $start_date = $_REQUEST['start_date'];
+        } else {
+            // set date range to current year
+            $start_date = '2020-01-01';
+        }
+
+        if (isset($_REQUEST['end_date'])) {
+            $end_date = $_REQUEST['end_date'];
+        } else {
+            // set date range to current year
+            $end_date = '2020-12-31';
+        }
+
+        $stmt = $this->conn->prepare($q);
+        $stmt->bindParam(':start_date', $start_date);
+        $stmt->bindParam(':end_date', $end_date);
+        $stmt->execute();
+
+        $results = array();
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            array_push($results, $row);
+        }
+
+        return $results;
+
     }
 
     public function getAllStats()
@@ -37,7 +79,7 @@ class StatsFetcher
         // Fetch the tally of genres for specified date range
         $q = "SELECT genre, COUNT(id) AS 'count'
             FROM `notables_tab`
-            WHERE `date` BETWEEN :st_date AND :en_date
+            WHERE `date` BETWEEN :start_date AND :end_date
             GROUP BY genre";
 
         // TOOD: make date variable based on user input
@@ -45,8 +87,8 @@ class StatsFetcher
         $end_date = '2020-12-31';
 
         $stmt = $this->conn->prepare($q);
-        $stmt->bindParam(':st_date', $start_date);
-        $stmt->bindParam(':en_date', $end_date);
+        $stmt->bindParam(':start_date', $start_date);
+        $stmt->bindParam(':end_date', $end_date);
         $stmt->execute();
 
         $genre_count = array();

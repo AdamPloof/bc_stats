@@ -4,6 +4,10 @@ body {
     background-color: rgb(235, 235, 235);
 }
 
+#report-container {
+    max-width: 1200px;
+}
+
 .report {
     background-color: white;
     max-height: 500px;
@@ -56,9 +60,10 @@ body {
     background-color: white;
     margin-top: 35px;
     margin-bottom: 35px;
+    max-height: 487px;
     box-shadow: 5px 5px 8px #888888;
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
 }
 
 .drill-output {
@@ -66,6 +71,25 @@ body {
     flex-direction: column;
     width: 75%;
     justify-content: center;
+}
+
+.drill-title {
+    position: sticky;
+    top: 0;
+    background-color: #6e7780;
+    padding: 5px 15px 5px 5px;
+    height: 25px;
+    padding-left: 15px;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    border-top: 1px solid rgba(0,0,0,.125);
+}
+
+.section-title {
+    position: absolute;
+    top: 10%;
+    color: rgb(238, 238, 238);
+    font-size: smaller;
+    font-weight: 400;
 }
 
 .drill-col {
@@ -78,14 +102,26 @@ body {
 
 .genre-col, .album-col {
     border-top-width: 0;
-    border: 1px solid rgba(0,0,0,.125);
-    padding: 15px;
+    overflow: scroll;
+    /* border: 1px solid rgba(0,0,0,.125); */
 }
 
 .genre-col {
-    height: 40%;
+    height: 170px;
 }
 
 .album-col {
-    height: 60%;
+    height: 317px;
+}
+
+#tracks {
+    cursor: row-resize;
+}
+
+#drill-tracks {
+    font-size: smaller;
+}
+
+#drill-tracks a {
+    text-decoration: none;
 }

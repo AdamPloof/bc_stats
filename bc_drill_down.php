@@ -39,7 +39,7 @@
 
     <?php
         $stats = new StatsFetcher;
-        $dates = $stats->sumByDate();
+        $dates = $stats->fetchStats('sum_by_date');
     ?>
 
     <div id="report_container" class="container">
@@ -59,7 +59,7 @@
                                             <h5 class='mb-1'>$date</h5>
                                             <small>$count albums</small>
                                         </div>
-                                        <p class='mb-1'>$total</p>
+                                        <p class='mb-1'>$$total</p>
                                 </a>
                             ";
                         }
@@ -68,10 +68,16 @@
             </div>
             <div class="drill-col drill-output">
                 <div class="genre-col">
-                    <p>By Genre</p>
+                    <div class="drill-title">
+                        <p class="section-title">Genres</p>
+                    </div>
+                    <?php require "tables/genre_table.php" ?>
                 </div>
                 <div class="album-col">
-                    <p>Albums</p>
+                    <div id="tracks" class="drill-title">
+                        <p class="section-title">Albums</p>
+                    </div>
+                    <?php require "tables/tracks_table.php" ?>
                 </div>
             </div>
         </div>
@@ -81,6 +87,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="static/js/bc_drill_down.js"></script>
 
 </body>
 </html>

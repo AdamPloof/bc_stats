@@ -20,7 +20,7 @@
     <div id="report_container" class="container">
         <!-- Report Goes Here -->
         <?php 
-            require_once "bc_table.php"; 
+            require_once "tables/bc_table.php"; 
         ?>
     </div>
 
