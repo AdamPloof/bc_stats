@@ -44,43 +44,66 @@
 
     <div id="report_container" class="container">
         <!-- Report Goes Here -->
-        <div class="drill-down">
-            <div class="drill-col dates-sidebar">
-                <div class="list-group">
-                    <?php
-                        foreach ($dates as $row) {
-                            $date = $row["date"];
-                            $total = $row["total"];
-                            $count = $row['count'];
+        <div class="drill-container">
+            <div class="drill-header"> 
+                <div class="drill-logo">
+                    <p class="text-muted">BC Notables <small>Drill Down</small></p>
+                </div>
+                <div class="drill-options">
+                    <button class="btn btn-sm btn-info float-right">Reset</button>
+                </div>   
+            </div>
+            <div class="drill-body">
+                <div class="drill-col dates-sidebar">
+                    <div class="list-group">
+                        <?php
+                            foreach ($dates as $row) {
+                                $date = $row["date"];
+                                $total = $row["total"];
+                                $count = $row['count'];
 
-                            echo "
-                                    <a href='#' class='list-group-item list-group-item-action'>
-                                        <div class='d-flex w-100 justify-content-between'>
-                                            <h5 class='mb-1'>$date</h5>
-                                            <small>$count albums</small>
-                                        </div>
-                                        <p class='mb-1'>$$total</p>
-                                </a>
-                            ";
-                        }
-                    ?>
+                                echo "
+                                        <a href='#' class='list-group-item list-group-item-action' data-date='$date'>
+                                            <div class='d-flex w-100 justify-content-between'>
+                                                <h5 class='mb-1'>$date</h5>
+                                                <small>$count albums</small>
+                                            </div>
+                                            <p class='mb-1'>$$total</p>
+                                    </a>
+                                ";
+                            }
+                        ?>
+                    </div>
+                </div>
+                <div class="drill-col drill-output">
+                    <div class="genre-col">
+                        <div class="drill-title">
+                            <p class="section-title">Genres</p>
+                        </div>
+                        <div id="genre-table">
+                            <?php require "tables/genre_table.php" ?>
+                        </div>
+                    </div>
+                    <div class="album-col">
+                        <div id="tracks" class="drill-title">
+                            <p class="section-title">Albums</p>
+                        </div>
+                        <div id="tracks-table">
+                            <?php require "tables/tracks_table.php" ?>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="drill-col drill-output">
-                <div class="genre-col">
-                    <div class="drill-title">
-                        <p class="section-title">Genres</p>
-                    </div>
-                    <?php require "tables/genre_table.php" ?>
+            <div class="drill-footer">
+                <div class="drill-total">
+                    <p class="text-muted">Total:</p>
                 </div>
-                <div class="album-col">
-                    <div id="tracks" class="drill-title">
-                        <p class="section-title">Albums</p>
-                    </div>
-                    <?php require "tables/tracks_table.php" ?>
+                <div class="drill-info text-right">
+                    <p class="text-muted">Some extra info</p>
                 </div>
             </div>
         </div>
+
     </div>
 
     <!-- Scripts -->
