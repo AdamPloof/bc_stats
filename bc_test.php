@@ -20,7 +20,7 @@
         <div id="report_container" class="container">
             <?php
                 $stats = new StatsFetcher;
-                $genres = $stats->getGenreCount();
+                $genres = $stats->fetchStats('genre_count');
 
                 foreach($genres as $row) {
                     echo $row['genre'] . " " . $row['count'] . "<br>";

@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bandcamp Notables Report</title>
 
-    <?php require_once "fetch_stats.php";?>
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="static/css/styles.css">
@@ -38,8 +36,12 @@
     </nav>
 
     <?php
+        require_once "table_content.php";
+        require_once "fetch_stats.php";
         $stats = new StatsFetcher;
-        $dates = $stats->fetchStats('sum_by_date');
+        $totals = $stats->fetchStats('sum_by_date');
+        $tracks = $stats->fetchStats('select_all');
+        $genres = $stats->fetchStats('sum_by_genre');    
     ?>
 
     <div id="report_container" class="container">
@@ -57,21 +59,7 @@
                 <div class="drill-col dates-sidebar">
                     <div class="list-group">
                         <?php
-                            foreach ($dates as $row) {
-                                $date = $row["date"];
-                                $total = $row["total"];
-                                $count = $row['count'];
-
-                                echo "
-                                        <a href='#' class='list-group-item list-group-item-action' data-date='$date'>
-                                            <div class='d-flex w-100 justify-content-between'>
-                                                <h5 class='mb-1'>$date</h5>
-                                                <small>$count albums</small>
-                                            </div>
-                                            <p class='mb-1'>$$total</p>
-                                    </a>
-                                ";
-                            }
+                            echo getTotalsSidebar($totals);
                         ?>
                     </div>
                 </div>
@@ -81,7 +69,18 @@
                             <p class="section-title">Genres</p>
                         </div>
                         <div id="genre-table">
-                            <?php require "tables/genre_table.php" ?>
+                            <table id="drill-tracks" class="table table-striped table-hover table-sm">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Genre</th>
+                                        <th scope="col">Album Count</th>
+                                        <th scope="col">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="genre-body">
+                                    <?php echo getGenreTable($genres); ?> 
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="album-col">
@@ -89,7 +88,24 @@
                             <p class="section-title">Albums</p>
                         </div>
                         <div id="tracks-table">
-                            <?php require "tables/tracks_table.php" ?>
+                            <table id="drill-tracks" class="table table-striped table-hover table-sm">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Artist</th>
+                                        <th scope="col">Genre</th>
+                                        <th scope="col">Location</th>
+                                        <th scope="col">Track Count</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Currency</th>
+                                        <th scope="col">Has Label?</th>
+                                        <th scope="col">Label</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tracks-body">
+                                    <?php echo getTracksTable($tracks); ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

@@ -19,7 +19,7 @@
     <?php
 
     $stats = new StatsFetcher;
-    $all_stats = $stats->getAllStats();
+    $all_stats = $stats->fetchStats('select_all');
 
     foreach($all_stats as $row) {
         $date = $row["date"];

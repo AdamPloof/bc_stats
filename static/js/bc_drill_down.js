@@ -44,20 +44,31 @@ function mouseDown(e) {
 const dateItems = document.getElementsByClassName("list-group-item list-group-item-action");
 
 for (let i = 0; i < dateItems.length; i++) {
-    dateItems[i].addEventListener('click', fetchGenre);
+    dateItems[i].addEventListener('click', fetchTableInfo);
 }
 
-function fetchGenre(e) {
+function fetchTableInfo(e) {
     e.preventDefault();
+    let fetch_date = this.dataset.date;
+    let genre_q = "genre";
+    let genre_id = "genre-body";
+    let tracks_q = "tracks";
+    let tracks_id= "tracks-body";
+
+    loadGenres(fetch_date, genre_q, genre_id);
+    // loadTracks(fetch_date, tracks_q, tracks_id);
+}
+
+function loadGenres(fetch_date, tbl_q, tbl_id) {
 
     // Constructing the URL
-    let fetchDate = this.dataset.date;
-    let url = new URL("http://localhost:8080/bc_notables/tables/genre_table.php");
-    let date_params = new URLSearchParams();
+    let url = new URL("http://localhost:8080/bc_notables/bc_ajax.php");
+    let params = new URLSearchParams();
 
-    date_params.append('start_date', fetchDate);
-    date_params.append('end_date', fetchDate);
-    url.search = date_params.toString();
+    params.append('start_date', fetch_date);
+    params.append('end_date', fetch_date);
+    params.append('tbl', tbl_q);
+    url.search = params.toString();
 
     // Create the request
     request = new XMLHttpRequest();
@@ -65,7 +76,7 @@ function fetchGenre(e) {
     request.open('GET', url.toString(), true);
     
     request.onload = function() {
-        let tbl = document.getElementById('genre-table');
+        let tbl = document.getElementById(tbl_id);
         let data = request.response;
         if (this.status == 200) {
             clearTable(tbl);
@@ -75,7 +86,43 @@ function fetchGenre(e) {
         }
     }
 
+    function clearTable(tbl) {
+        // Clear the table of old data before refreshing with new
+        while (tbl.firstChild) {
+            tbl.firstChild.remove();
+        }
+    }
+
     request.send();
+}
+
+// TODO: Combine the fetch functions into a single fetchTable function
+function loadTracks(fetch_date, tbl_q, tbl_id) {
+
+    // Constructing the URL
+    let url = new URL("http://localhost:8080/bc_notables/bc_ajax.php");
+    let params = new URLSearchParams();
+
+    params.append('start_date', fetch_date);
+    params.append('end_date', fetch_date);
+    params.append('tbl', tbl_q);
+    url.search = params.toString();
+
+    // Create the request
+    request = new XMLHttpRequest();
+    request.responseType = 'text';
+    request.open('GET', url.toString(), true);
+    
+    request.onload = function() {
+        let tbl = document.getElementById(tbl_id);
+        let data = request.response;
+        if (this.status == 200) {
+            clearTable(tbl);
+            tbl.innerHTML = data;
+        } else {
+            console.log("could not retrieve data");
+        }
+    }
 
     function clearTable(tbl) {
         // Clear the table of old data before refreshing with new
@@ -83,4 +130,6 @@ function fetchGenre(e) {
             tbl.firstChild.remove();
         }
     }
+
+    request.send();
 }
