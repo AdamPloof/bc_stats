@@ -7,11 +7,13 @@ const genreWindow = document.querySelector(".genre-col");
 tracksResize.addEventListener("mousedown", mouseDown);
 
 function mouseDown(e) {
+    e.preventDefault();
     let currentY = e.clientY;
     window.addEventListener("mousemove", mouseMove);
     window.addEventListener("mouseup", mouseUp);
 
     function mouseMove(e) {
+        e.preventDefault();
         const track_rect = trackWindow.getBoundingClientRect();
         const genre_rect = genreWindow.getBoundingClientRect();
 

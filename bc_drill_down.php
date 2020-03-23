@@ -17,20 +17,29 @@
 
     <!-- Filter Nav -->
     <nav class="filter-nav d-flex justify-content-around">
-        <form class="form-inline">                      
-            <div class="form-group row">
-                <span class="dd-label"><small>Store</small></span>
-                <div class="col drill-input">
-                    <input type="text" class="form-control form-control-sm" id="store-input" placeholder="Store">
-                </div>
-                <span class="dd-label"><small>From</small></span>
-                <div class="col-3 drill-input">
+        <form>                      
+            <div class="form-group form-inline">                            
+                <small><label class="dd-label" for="vend-input">Vendor ID</label></small>
+                    <input type="text" class="form-control form-control-sm" id="vend-input" placeholder="Vend (optional)">
+                <small><label class="dd-label" for="dept-input">Department</label></small>
+                    <select required id="dept-input" class="custom-select custom-select-sm form-control form-control-sm">
+                        <option class="placeholder" value="" disabled selected>Deparment</option>
+                        <option value="001">Fireworks</option>
+                        <option value="002">Cheese</option>
+                        <option value="both">Both</option>
+                    </select>
+                <small><label class="dd-label" for="store-input">Store</label></small>
+                    <select required id="store-input" class="custom-select custom-select-sm form-control form-control-sm">
+                        <option class="placeholder" value="" disabled selected>Store</option>
+                        <option value="001">Downtown</option>
+                        <option value="002">South End</option>
+                        <option value="both">Both</option>
+                    </select>
+                <small><label class="dd-label" for="date1-input">From</label></small>
                     <input type="text" class="form-control form-control-sm" id="date1-input" placeholder="Start date">
-                </div>
-                <span class="dd-label"><small>To</small></span>
-                <div class="col-3 drill-input">
+                <small><label class="dd-label" for="date2-input">To</label></small>
                     <input type="text" class="form-control form-control-sm" id="date2-input" placeholder="End date">
-                </div>
+                <button class="btn btn-sm btn-info float-right">Go</button>
             </div>
         </form>
     </nav>
