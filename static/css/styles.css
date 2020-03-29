@@ -184,6 +184,10 @@ color: rgb(34, 34, 34);
     text-decoration: none;
 }
 
+#modal-btn {
+    margin-right: 6px;
+}
+
 /* list group colors */
     /* active: #e9ecef */
     /* hover/focus: #f8f9fa */

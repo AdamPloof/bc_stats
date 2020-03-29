@@ -55,11 +55,10 @@ class StatsFetcher
 
     }
 
-    public function getJsonData()
+    public function getJsonData($idx)
     {
-        // Return all stats as json
-        $all_data = $this->fetchStats('select_all');
-        return json_encode($all_data);
+        $data = $this->fetchStats($idx);
+        return json_encode($data);
     }
 }
 

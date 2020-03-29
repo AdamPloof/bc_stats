@@ -19,5 +19,11 @@ $query_set = array(
     "genre_count" => "SELECT genre, COUNT(id) AS 'count'
         FROM `notables_tab`
         WHERE `date` BETWEEN :start_date AND :end_date
-        GROUP BY genre"
-    );
+        GROUP BY genre",
+
+    "genre_by_date" => "SELECT `date`, `genre`, COUNT(id) AS 'count'
+        FROM `notables_tab`
+        WHERE `date` BETWEEN :start_date AND :end_date
+        GROUP BY `genre`, `date`
+        ORDER BY `genre`, `date`"    
+);

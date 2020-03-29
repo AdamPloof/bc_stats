@@ -12,5 +12,8 @@ if (isset($_REQUEST['tbl'])) {
     } elseif ($_REQUEST['tbl'] == "tracks") {
         $tracks = $stats->fetchStats('select_all');
         echo getTracksTable($tracks);
+    } elseif ($_REQUEST['tbl'] == "chart") {
+        $tracksJson = $stats->getJsonData('genre_by_date');
+        echo $tracksJson;
     }
 }

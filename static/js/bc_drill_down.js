@@ -120,3 +120,35 @@ function loadTable(fetch_date, tbl_q) {
         request.send();
     });
 }
+
+// Load the email modal
+let modalBtn = document.getElementById("modal-btn");
+let addEmailBtn = document.getElementById("add-email");
+
+modalBtn.addEventListener("click", function() {
+    $('#email-modal').modal();
+})
+
+addEmailBtn.addEventListener("click", addEmailRecipient);
+
+function addEmailRecipient() {
+    // Add another input row to email recipipient form
+    let emailInputs = document.getElementsByClassName("email-input");
+    console.log(emailInputs.length);
+    let lastInput = emailInputs[emailInputs.length - 1];
+    let rec_num = parseInt(lastInput.dataset.rec_num) + 1;
+    let newInput = document.createElement("div");
+    newInput.className = "form-group";
+    newInput.classList.add("email-input");
+    newInput.dataset.rec_num = rec_num;
+
+    let inputText = `<label for="recipient-name" class="col-form-label">Recipient ${rec_num}:</label>
+                    <input type="text" class="form-control form-control-sm" id="recipient-name">`;
+
+    newInput.innerHTML = inputText;
+
+    if (emailInputs.length < 10) {
+        // Cap the number of addresses at 10 for now
+        lastInput.parentNode.insertBefore(newInput, lastInput.nextSibling);
+    } 
+}
